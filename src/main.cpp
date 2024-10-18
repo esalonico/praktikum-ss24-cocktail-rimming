@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <esp_wpa2.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include "FS.h"
@@ -16,8 +15,12 @@ const char *credentialsPath = "/wifi_credentials.txt";
 
 // WiFi credentials
 String ssid;
-String username;
 String password;
+
+// WiFi network settings
+IPAddress local_IP(192, 168, 0, 125); // Static IP
+IPAddress gateway(192, 168, 0, 1);
+IPAddress subnet(255, 255, 255, 0);
 
 // Define the number of load cells
 const int NUM_LOAD_CELLS = 3;
@@ -100,19 +103,15 @@ void readWiFiCredentials()
 
   ssid = file.readStringUntil('\n');
   ssid.trim();
-  username = file.readStringUntil('\n');
-  username.trim();
   password = file.readStringUntil('\n');
   password.trim();
 
   file.close();
 
   // Debug output for credentials
-  Serial.println("Credentials read:");
+  Serial.println("WiFi credentials read:");
   Serial.print("SSID: ");
   Serial.println(ssid);
-  Serial.print("Username: ");
-  Serial.println(username);
 }
 
 void connectToWiFi()
@@ -128,9 +127,15 @@ void connectToWiFi()
   Serial.println("Disconnecting from previous Wi-Fi connections");
   WiFi.disconnect(true);
 
+  // Set Static IP address
+  if (!WiFi.config(local_IP, gateway, subnet))
+  {
+    Serial.println("STA Failed to configure");
+  }
+
   // Begin Wi-Fi connection
   Serial.printf("Connecting to SSID: %s\n", ssid.c_str());
-  WiFi.begin(ssid.c_str(), WPA2_AUTH_PEAP, username.c_str(), username.c_str(), password.c_str());
+  WiFi.begin(ssid, password);
 
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED)
@@ -144,39 +149,17 @@ void connectToWiFi()
   Serial.println(WiFi.localIP());
 
   // Display IP address on OLED
+  char buffer[50];
+  sprintf(buffer, "Local IP address (%s):", ssid.c_str());
+  display.println(buffer);
   display.println(WiFi.localIP().toString());
+  display.println("\nPublic endpoint:");
+  display.println("https://lehre.bpm.in.tum.de/~ge54bow/cocktail_rimming/api/");
   display.display();
 
   unsigned long duration = millis() - startTime;
   Serial.printf("Connected to Wi-Fi in %lu ms\n", duration);
 }
-
-// void connectToWiFi()
-// {
-//   // Read WiFi credentials from SPIFFS
-//   readWiFiCredentials();
-
-//   // Disconnect from any previous WiFi connections
-//   WiFi.disconnect(true);
-
-//   // Begin WiFi connection
-//   WiFi.begin(ssid.c_str(), WPA2_AUTH_PEAP, username.c_str(), username.c_str(), password.c_str());
-
-//   // Wait for connection
-//   while (WiFi.status() != WL_CONNECTED)
-//   {
-//     delay(500);
-//     Serial.print(F("."));
-//   }
-//   Serial.println("");
-//   Serial.println(F("WiFi is connected!"));
-//   Serial.println(F("IP address set: "));
-//   Serial.println(WiFi.localIP());
-
-//   // Display IP address on OLED
-//   display.println(WiFi.localIP().toString().c_str());
-//   display.display();
-// }
 
 void initializeServer()
 {
