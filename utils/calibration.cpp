@@ -11,7 +11,7 @@
 
 HX711 scale;
 
-float calibration_factor = -410; // You may need to adjust this value
+float calibration_factor = -410; // To ajust
 float units;
 float ounces;
 

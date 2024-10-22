@@ -1,7 +1,7 @@
 #include "HX711.h"
 #include <Arduino.h>
 
-// HX711 circuit wiring (personalizzati per nostro progetto, vedi board fisica)
+// HX711 circuit wiring
 const int LOADCELL_DOUT_PIN = 26;
 const int LOADCELL_SCK_PIN = 27;
 
