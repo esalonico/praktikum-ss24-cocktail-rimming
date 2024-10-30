@@ -82,7 +82,6 @@ void initializeScales()
     scales[i].set_scale();
     scales[i].tare();
     scales[i].set_scale(calibration_factors[i]);
-    Serial.printf("Scale %d initialized with calibration factor %.2f\n", i + 1, calibration_factors[i]); // TODO: remove
   }
 }
 
