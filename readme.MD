@@ -1,13 +1,13 @@
 # Automated Cocktail Rimming System
 
-**Practical Course SS24**
+**SS24 - Advanced Practical Course "Sustainable Process Automation: Humans, Software and the Mediator Pattern (IN2130, IN2106, IN4303)"**
 
 An automated solution to streamline the process of rimming cocktail glasses, enhancing efficiency, consistency, and reducing resource waste, while at the same time praciting different skills like process management, 3D printing, electronics and process design/execution.
 
 ## Video
 
-[![YouTube Video Thumbnail](assets/youtube_thumbnail.png)](https://youtu.be/M-wNSkutfYI){:target="_blank"}  
-*Click on the preview image to play the video on YouTube*
+[![YouTube Video Thumbnail](assets/youtube_thumbnail.png)](https://youtu.be/M-wNSkutfYI)
+*Click on the preview image to play the video on YouTube, or visit this URL: <https://youtu.be/M-wNSkutfYI>*
 
 ## Project Overview
 
@@ -15,7 +15,7 @@ An automated solution to streamline the process of rimming cocktail glasses, enh
 
 The goal of this project is to automate the process of rimming a cocktail glass. This involves dipping the glass first into a liquid (often lemon juice or syrups) and subsequently into a coating (such as sugar or salt) to enhance the presentation and flavor of the cocktail.
 
-The project aims to solve the problem of manually rimming cocktail glasses by ensuring a consistent and efficient application of the sugar or salt coating. In practical use, this automation improves cocktail preparation times and minimizes waste by precisely controlling the amount of applied liquid and solid. Additionally, it provides the ability to track quantities used via integrated weighing sensors.
+The project aims to solve the problem of manually rimming cocktail glasses by ensuring a consistent and efficient application of the sugar or salt coating. In practical use, this automation improves cocktail preparation times and minimizes waste by precisely controlling the amount of liquid and solid applied. Additionally, it provides the ability to track quantities used via integrated weighing sensors.
 
 ## Technical Summary
 
@@ -23,7 +23,7 @@ The project consists of three main components:
 
 - **Robot**: From [Universal Robots](https://www.universal-robots.com/) for ultra precise and repeatable movements.
 - **Hardware**: Custom-designed, 3D-printed components. *[(Go to section)](#hardware)*
-- **Software**: Composed of CPEE, ESP32 code, and a custom web server. *[(Go to section)](#software)*
+- **Software**: Composed of CPEE (Cloud Process Execution Engine), ESP32 code, and a custom web server. *[(Go to section)](#software)*
 
 ![BPMN](/assets/bpmn.png)  
 *High-level overview of the cocktail rimming process in BPMN.*
@@ -79,7 +79,7 @@ Below is a diagram representation of the ESP32 pins and their connections.
 The software architecture includes the following main services:
 
 - [**ESP32**](#esp-32): REST services between hardware and CPEE, web server, load cell configuration, and display management.
-- [**CPEE**](#cpee): Process engine and orchestrator.
+- [**CPEE**](#cpee-cloud-process-execution-engine): Process engine and orchestrator.
 - **Robot**: Manages robotic actions to execute glass dipping sequences.
 - [**WiFi Router**](#wifi-router): Makes the ESP32 web server accessible publicly.
 
@@ -132,7 +132,7 @@ Utilities for tasks such as load cell calibration, display testing, and HX711 de
 
 The project is built and managed via [PlatformIO](https://platformio.org/).
 
-#### CPEE
+#### CPEE (Cloud Process Execution Engine)
 
 - **Purpose**: Create a modular and well-structured process that coordinates the interactions between the user, sensors (load cells), and the robot.
 
