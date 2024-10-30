@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "46ecc0e1-ae7a-440d-a197-53da7b785dd4",
+		"name": "Praktikum",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28238533"
+	},
+	"item": [
+		{
+			"name": "all weights",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{WEBSERVER_IP}}/weight",
+					"host": [
+						"{{WEBSERVER_IP}}"
+					],
+					"path": [
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weight (ID)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{WEBSERVER_IP}}/weight/2",
+					"host": [
+						"{{WEBSERVER_IP}}"
+					],
+					"path": [
+						"weight",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all calibration factors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{WEBSERVER_IP}}/calibration_factor",
+					"host": [
+						"{{WEBSERVER_IP}}"
+					],
+					"path": [
+						"calibration_factor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calibration factor (ID)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{WEBSERVER_IP}}/calibration_factor/1",
+					"host": [
+						"{{WEBSERVER_IP}}"
+					],
+					"path": [
+						"calibration_factor",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calibration_factor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "value",
+							"value": "-427",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{WEBSERVER_IP}}/calibration_factor/2",
+					"host": [
+						"{{WEBSERVER_IP}}"
+					],
+					"path": [
+						"calibration_factor",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all weights (public IP)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://lehre.bpm.in.tum.de/~ge54bow/cocktail_rimming/api/",
+					"protocol": "https",
+					"host": [
+						"lehre",
+						"bpm",
+						"in",
+						"tum",
+						"de"
+					],
+					"path": [
+						"~ge54bow",
+						"cocktail_rimming",
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "WEBSERVER_IP",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
